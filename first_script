@@ -1,0 +1,43 @@
+package practice;
+//package dev.selenium.getting_started;
+//import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import java.time.Duration;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
+public class start {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.selenium.dev/selenium/web/web-form.html");
+		String title = driver.getTitle();
+		System.out.println(title);
+		driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+		WebElement textBox = driver.findElement(By.name("my-text"));
+		WebElement submitButton = driver.findElement(By.cssSelector("button"));
+		textBox.sendKeys("Selenium");
+		submitButton.click();
+		WebElement message = driver.findElement(By.id("message"));
+		String value = message.getText();
+		System.out.print("Received "+ value);
+		driver.quit();
+	}
+
+}
+
+
+Output:
+SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See https://www.slf4j.org/codes.html#noProviders for further details.
+Starting ChromeDriver 114.0.5735.90 (386bc09e8f4f2e025eddae123f36f6263096ae49-refs/branch-heads/5735@{#1052}) on port 44912
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+Jul 07, 2023 8:42:02 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find an exact match for CDP version 114, so returning the closest version found: 111
+Web form
+Received Received!
